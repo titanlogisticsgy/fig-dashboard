@@ -1,0 +1,618 @@
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fresh Island Global — Business Dashboard</title>
+  <meta name="description" content="Business performance dashboard for Fresh Island Global — track revenue, clients, operations, and growth metrics.">
+
+  <!-- Fonts -->
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <svg aria-label="Fresh Island Global" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+          <rect width="36" height="36" rx="8" fill="var(--accent)"/>
+          <path d="M8 18C8 12.477 12.477 8 18 8C23.523 8 28 12.477 28 18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M8 18C8 23.523 12.477 28 18 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 2"/>
+          <path d="M18 28C23.523 28 28 23.523 28 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.5"/>
+          <circle cx="18" cy="18" r="3.5" fill="white"/>
+          <path d="M18 14V10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M22 18H26" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">Fresh Island</span>
+          <span class="logo-sub">Global</span>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <span class="nav-label">Overview</span>
+        <a href="#" class="nav-item active" data-view="overview">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-view="revenue">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Revenue</span>
+        </a>
+        <a href="#" class="nav-item" data-view="clients">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Clients</span>
+        </a>
+        <a href="#" class="nav-item" data-view="operations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Operations</span>
+        </a>
+      </div>
+      <div class="nav-section">
+        <span class="nav-label">Analytics</span>
+        <a href="#" class="nav-item" data-view="marketing">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>Marketing</span>
+        </a>
+        <a href="#" class="nav-item" data-view="finance">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Finance</span>
+        </a>
+      </div>
+      <div class="nav-section">
+        <span class="nav-label">Manage</span>
+        <a href="#" class="nav-item" data-view="add-entry">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <span>Add Entry</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="period-selector">
+        <span class="nav-label">Period</span>
+        <div class="period-btns">
+          <button class="period-btn" data-period="7d">7D</button>
+          <button class="period-btn active" data-period="30d">30D</button>
+          <button class="period-btn" data-period="90d">90D</button>
+          <button class="period-btn" data-period="12m">1Y</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrap">
+    <!-- Header -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title" id="page-title">Overview</h1>
+        <span class="page-date" id="current-date"></span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search metrics..." id="search-input">
+        </div>
+        <div class="alert-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge-dot"></span>
+        </div>
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <div class="avatar">PF</div>
+      </div>
+    </header>
+
+    <!-- Main scrollable area -->
+    <main class="main-content" id="main-content">
+
+      <!-- OVERVIEW VIEW -->
+      <div class="view active" id="view-overview">
+        <!-- KPI Row -->
+        <section class="kpi-grid">
+          <div class="kpi-card" data-testid="kpi-revenue">
+            <div class="kpi-header">
+              <span class="kpi-label">Total Revenue</span>
+              <span class="kpi-icon revenue-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="84650" data-prefix="$">$0</div>
+            <div class="kpi-delta positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +12.4% vs last period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-revenue"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-clients">
+            <div class="kpi-header">
+              <span class="kpi-label">Active Clients</span>
+              <span class="kpi-icon clients-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="47">0</div>
+            <div class="kpi-delta positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +5 new this period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-clients"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-jobs">
+            <div class="kpi-header">
+              <span class="kpi-label">Jobs Completed</span>
+              <span class="kpi-icon jobs-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="218">0</div>
+            <div class="kpi-delta positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +18.2% vs last period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-jobs"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-satisfaction">
+            <div class="kpi-header">
+              <span class="kpi-label">Satisfaction Score</span>
+              <span class="kpi-icon sat-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="94" data-suffix="%">0%</div>
+            <div class="kpi-delta positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +2.1% vs last period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-sat"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-expenses">
+            <div class="kpi-header">
+              <span class="kpi-label">Total Expenses</span>
+              <span class="kpi-icon expense-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="31200" data-prefix="$">$0</div>
+            <div class="kpi-delta negative">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +8.3% vs last period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-expenses"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-profit">
+            <div class="kpi-header">
+              <span class="kpi-label">Net Profit</span>
+              <span class="kpi-icon profit-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="53450" data-prefix="$">$0</div>
+            <div class="kpi-delta positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +15.7% vs last period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-profit"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-outstanding">
+            <div class="kpi-header">
+              <span class="kpi-label">Outstanding Invoices</span>
+              <span class="kpi-icon inv-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="8" data-suffix=" open">0 open</div>
+            <div class="kpi-delta warning">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              $4,200 total pending
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-inv"></canvas></div>
+          </div>
+
+          <div class="kpi-card" data-testid="kpi-retention">
+            <div class="kpi-header">
+              <span class="kpi-label">Client Retention</span>
+              <span class="kpi-icon ret-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              </span>
+            </div>
+            <div class="kpi-value" data-target="89" data-suffix="%">0%</div>
+            <div class="kpi-delta positive">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              +3.4% vs last period
+            </div>
+            <div class="kpi-sparkline"><canvas id="sparkline-ret"></canvas></div>
+          </div>
+        </section>
+
+        <!-- Charts Row -->
+        <section class="charts-grid">
+          <div class="chart-card wide" data-testid="chart-revenue">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Revenue vs Expenses</h2>
+                <p class="chart-subtitle">Monthly comparison over 12 months</p>
+              </div>
+              <div class="chart-actions">
+                <button class="chart-btn active" data-chart="bar">Bar</button>
+                <button class="chart-btn" data-chart="line">Line</button>
+                <button class="export-btn" onclick="exportChart('revenueChart')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="revenueChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card" data-testid="chart-services">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Revenue by Service</h2>
+                <p class="chart-subtitle">Current period breakdown</p>
+              </div>
+            </div>
+            <div class="chart-wrap donut-wrap">
+              <canvas id="servicesChart"></canvas>
+            </div>
+            <div class="legend" id="services-legend"></div>
+          </div>
+        </section>
+
+        <!-- Second Charts Row -->
+        <section class="charts-grid">
+          <div class="chart-card" data-testid="chart-clients-growth">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Client Growth</h2>
+                <p class="chart-subtitle">New vs churned clients per month</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="clientsChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card" data-testid="chart-jobs">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Jobs by Status</h2>
+                <p class="chart-subtitle">This period</p>
+              </div>
+            </div>
+            <div class="chart-wrap donut-wrap">
+              <canvas id="jobsChart"></canvas>
+            </div>
+            <div class="legend" id="jobs-legend"></div>
+          </div>
+
+          <div class="chart-card" data-testid="chart-cashflow">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Cash Flow</h2>
+                <p class="chart-subtitle">Net cash movement (GYD '000)</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="cashflowChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent Activity + Top Clients -->
+        <section class="bottom-grid">
+          <div class="table-card" data-testid="recent-activity">
+            <div class="chart-header">
+              <h2 class="chart-title">Recent Activity</h2>
+              <button class="see-all">See all</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Job / Client</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="activity-tbody">
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-card" data-testid="top-clients">
+            <div class="chart-header">
+              <h2 class="chart-title">Top Clients</h2>
+              <button class="see-all">See all</button>
+            </div>
+            <div class="client-list" id="client-list"></div>
+          </div>
+        </section>
+
+        <!-- Goals & Targets -->
+        <section class="goals-section">
+          <div class="goals-card" data-testid="goals">
+            <div class="chart-header">
+              <h2 class="chart-title">Monthly Goals</h2>
+              <span class="goal-period">March 2026</span>
+            </div>
+            <div class="goals-grid" id="goals-grid"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ADD ENTRY VIEW -->
+      <div class="view" id="view-add-entry">
+        <div class="form-container">
+          <h2 class="section-heading">Add New Entry</h2>
+          <p class="section-sub">Manually log revenue, expenses, jobs, or client records.</p>
+          <div class="form-tabs" id="form-tabs">
+            <button class="form-tab active" data-form="revenue-form">Revenue</button>
+            <button class="form-tab" data-form="expense-form">Expense</button>
+            <button class="form-tab" data-form="job-form">Job</button>
+            <button class="form-tab" data-form="client-form">Client</button>
+          </div>
+
+          <!-- Revenue Form -->
+          <form class="entry-form active" id="revenue-form" onsubmit="handleFormSubmit(event, 'Revenue')">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Client Name</label>
+                <input type="text" placeholder="e.g. Cheddi Jagan Airport" required>
+              </div>
+              <div class="form-group">
+                <label>Service Type</label>
+                <select>
+                  <option>Airport Hangar Cleaning</option>
+                  <option>Corporate Office Cleaning</option>
+                  <option>Deep Clean</option>
+                  <option>Recurring Contract</option>
+                  <option>Content Creation</option>
+                  <option>Other Service</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Amount (GYD)</label>
+                <input type="number" placeholder="0.00" required>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="rev-date">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Invoice #</label>
+                <input type="text" placeholder="INV-0001">
+              </div>
+              <div class="form-group">
+                <label>Payment Status</label>
+                <select>
+                  <option>Paid</option>
+                  <option>Pending</option>
+                  <option>Overdue</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Notes</label>
+              <textarea placeholder="Optional notes about this revenue entry..." rows="3"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Add Revenue Entry</button>
+          </form>
+
+          <!-- Expense Form -->
+          <form class="entry-form" id="expense-form" onsubmit="handleFormSubmit(event, 'Expense')">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Expense Category</label>
+                <select>
+                  <option>Staff / Labour</option>
+                  <option>Equipment & Supplies</option>
+                  <option>Transport / Fuel</option>
+                  <option>Marketing</option>
+                  <option>Office / Rent</option>
+                  <option>Software & Tools</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Vendor / Payee</label>
+                <input type="text" placeholder="e.g. Staff wages">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Amount (GYD)</label>
+                <input type="number" placeholder="0.00" required>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="exp-date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Notes</label>
+              <textarea placeholder="Optional notes..." rows="3"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Add Expense Entry</button>
+          </form>
+
+          <!-- Job Form -->
+          <form class="entry-form" id="job-form" onsubmit="handleFormSubmit(event, 'Job')">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Job Title</label>
+                <input type="text" placeholder="e.g. Monthly hangar clean" required>
+              </div>
+              <div class="form-group">
+                <label>Client</label>
+                <input type="text" placeholder="Client name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Assigned Staff</label>
+                <input type="text" placeholder="Team member name(s)">
+              </div>
+              <div class="form-group">
+                <label>Scheduled Date</label>
+                <input type="date" id="job-date">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Duration (hrs)</label>
+                <input type="number" placeholder="0">
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select>
+                  <option>Scheduled</option>
+                  <option>In Progress</option>
+                  <option>Completed</option>
+                  <option>Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">Add Job</button>
+          </form>
+
+          <!-- Client Form -->
+          <form class="entry-form" id="client-form" onsubmit="handleFormSubmit(event, 'Client')">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Client Name</label>
+                <input type="text" placeholder="Company or individual" required>
+              </div>
+              <div class="form-group">
+                <label>Contact Person</label>
+                <input type="text" placeholder="Primary contact">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" placeholder="+592 XXX XXXX">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="email@domain.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Service Type</label>
+                <select>
+                  <option>Airport Hangar Cleaning</option>
+                  <option>Corporate Office Cleaning</option>
+                  <option>Recurring Contract</option>
+                  <option>Content Creation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Contract Value (GYD/mo)</label>
+                <input type="number" placeholder="0.00">
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">Add Client</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Other views placeholder -->
+      <div class="view" id="view-revenue">
+        <div class="view-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <h2>Revenue Analytics</h2>
+          <p>Detailed revenue breakdowns and projections coming soon. Use the Overview dashboard for a full summary.</p>
+        </div>
+      </div>
+      <div class="view" id="view-clients">
+        <div class="view-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <h2>Client Management</h2>
+          <p>Full client CRM and relationship tracking coming soon.</p>
+        </div>
+      </div>
+      <div class="view" id="view-operations">
+        <div class="view-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h2>Operations</h2>
+          <p>Job scheduling, staff management, and operational KPIs coming soon.</p>
+        </div>
+      </div>
+      <div class="view" id="view-marketing">
+        <div class="view-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <h2>Marketing Analytics</h2>
+          <p>Social media, lead generation, and campaign performance coming soon.</p>
+        </div>
+      </div>
+      <div class="view" id="view-finance">
+        <div class="view-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <h2>Finance</h2>
+          <p>P&L statements, cash flow analysis, and tax prep coming soon.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<footer style="display:none">
+  <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
